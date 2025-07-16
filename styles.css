@@ -1,0 +1,89 @@
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Urbanist", sans-serif;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+/* Hero Section Styling */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1, p {
+    background-image: linear-gradient(90deg, #ffffff 16%, #4d4d4d 140%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 96px;
+    line-height: 96px;
+    letter-spacing: -0.04em;
+    font-style: italic;
+    font-family: "Arapey", serif;
+    font-weight: 300;
+    padding: 14px;
+    margin: -14px;
+}
+
+.hero video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hero .content {
+    position: absolute;
+    color: white;
+    text-align: center;
+    z-index: 10;
+    font-size: 2.5rem;
+}
+
+.hero .content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Adding text shadow for better visibility */
+}
+
+.hero .content p {
+    font-size: 2rem;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Logo Styling */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+}
+
+.logo img {
+    width: 120px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero .content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero .content p {
+        font-size: 1.5rem;
+    }
+}
