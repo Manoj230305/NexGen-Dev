@@ -13,10 +13,10 @@
   <meta content="max-image-preview:large" name="robots"/>
   <link href="http://fonts.googleapis.com/" rel="dns-prefetch"/>
   <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-  <link href="feed/index.html" rel="alternate" title="AIXOR Creative Agency WordPress Theme » Feed" type="application/rss+xml"/>
-  <link href="comments/feed/index.html" rel="alternate" title="AIXOR Creative Agency WordPress Theme » Comments Feed" type="application/rss+xml"/>
+  <!-- <link href="feed/index.html" rel="alternate" title="AIXOR Creative Agency WordPress Theme » Feed" type="application/rss+xml"/> -->
+  <!-- <link href="comments/feed/index.html" rel="alternate" title="AIXOR Creative Agency WordPress Theme » Comments Feed" type="application/rss+xml"/> -->
   <link href="wp-content/plugins/header-footer-elementor/inc/widgets-css/frontenda1ec.css?ver=2.3.0" id="hfe-widgets-style-css" media="all" rel="stylesheet"/>
-  <link href="wp-content/plugins/contact-form-7/includes/css/stylesfc7a.css?ver=6.0.6" id="contact-form-7-css" media="all" rel="stylesheet"/>
+  <!-- <link href="wp-content/plugins/contact-form-7/includes/css/stylesfc7a.css?ver=6.0.6" id="contact-form-7-css" media="all" rel="stylesheet"/> -->
   <link href="wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementora1ec.css?ver=2.3.0" id="hfe-style-css" media="all" rel="stylesheet"/>
   <link href="wp-content/plugins/elementor/assets/css/frontend.min89ce.css?ver=3.28.4" id="elementor-frontend-css" media="all" rel="stylesheet"/>
   <link href="wp-content/uploads/elementor/css/post-8d7f6.css?ver=1745331320" id="elementor-post-8-css" media="all" rel="stylesheet"/>
@@ -60,8 +60,6 @@
   <meta content="WordPress 6.7.2" name="generator"/>
   <link href="index.html" rel="canonical"/>
   <link href="index.html" rel="shortlink"/>
-  <link href="wp-json/oembed/1.0/embedd623.json?url=https%3A%2F%2Fwpriverthemes.com%2Faixor%2F" rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"/>
-  <link href="wp-json/oembed/1.0/embed1e23?url=https%3A%2F%2Fwpriverthemes.com%2Faixor%2F&amp;format=xml" rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
   <meta content="Redux 4.5.7" name="generator"/>
@@ -355,15 +353,14 @@
      </div>
     </div>
    </header>
-   <!DOCTYPE html>
-   <html lang="en-US">
-    <head>
-     <!-- ===== Meta ===== -->
+   <!-- <!DOCTYPE html> -->
+   <!-- <html lang="en-US"> -->
+    <!-- <head>
      <meta charset="utf-8"/>
      <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
      <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-    </head>
+    </head> -->
     <body class="home page-template page-template-page-templates page-template-home page-template-page-templateshome-php page page-id-268 ehf-header ehf-footer ehf-template-aixor ehf-stylesheet-aixor elementor-default elementor-kit-8 elementor-page elementor-page-268">
 
      <div id="magic-cursor">
@@ -431,10 +428,26 @@
                       </div>
                     </div><br>
 
-                    <a class="theme-btn" href="contact/index.html" rel="nofollow" target="_blank">
-                      Let's Conquer
-                      <img alt="" decoding="async" src="wp-content/uploads/2024/09/btn-arrow-1.svg" />
+                    <a class="theme-btn" id="openChatbot">
+                      ASK SHOOSHA!
+                      <img alt="" src="wp-content/uploads/2024/09/btn-arrow-1.svg" />
                     </a>
+
+                    <div id="chatbotWidget" class="chatbot-widget">
+                      <div class="chatbot-header">
+                        <span>🤖 SHOOSHA AI Assistant</span>
+                        <button id="closeChatbot">&times;</button>
+                      </div>
+                      <div class="chatbot-messages" id="chatMessages">
+                        <div class="bot-message">Hi! I’m Shoosha. How can I help you today?</div>
+                      </div>
+                      <div class="chatbot-input">
+                        <input type="text" id="userInput" placeholder="Type your message..." />
+                        <button id="sendMessage">➤</button>
+                      </div>
+                    </div>
+
+
                   </div>
 
                 </div>
@@ -447,6 +460,110 @@
          </div>
         </div>
        </section>
+
+       <style>
+        /* Chatbot Widget Container */
+        .chatbot-widget {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 320px;
+          height: 420px;
+          background: #1a1a1a;
+          border-radius: 12px;
+          box-shadow: 0px 0px 15px rgba(255,255,255,0.1);
+          display: none;
+          flex-direction: column;
+          overflow: hidden;
+          z-index: 9999;
+          font-family: 'Segoe UI', sans-serif;
+        }
+
+        .theme-btn {
+          position: relative;
+          z-index: 1; /* Default lower value */
+        }
+
+        /* Header */
+        .chatbot-header {
+          background: #111;
+          color: #fff;
+          padding: 10px;
+          font-weight: bold;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .chatbot-header button {
+          background: transparent;
+          border: none;
+          font-size: 20px;
+          color: white;
+          cursor: pointer;
+        }
+
+        /* Messages */
+        .chatbot-messages {
+          padding: 10px;
+          flex: 1;
+          overflow-y: auto;
+          font-size: 14px;
+          color: #ddd;
+        }
+
+        .bot-message {
+          background: #2a2a2a;
+          padding: 8px 12px;
+          border-radius: 8px;
+          margin-bottom: 8px;
+          max-width: 85%;
+        }
+
+        .user-message {
+          background: #444;
+          padding: 8px 12px;
+          border-radius: 8px;
+          margin-bottom: 8px;
+          align-self: flex-end;
+          max-width: 85%;
+          text-align: right;
+        }
+
+        /* Input Section */
+        .chatbot-input {
+          display: flex;
+          border-top: 1px solid #333;
+        }
+
+        .chatbot-input input {
+          flex: 1;
+          padding: 10px;
+          background: #1a1a1a;
+          border: none;
+          color: white;
+          outline: none;
+        }
+
+        .chatbot-input button {
+          background: #fff;
+          border: none;
+          color: black;
+          padding: 0 15px;
+          cursor: pointer;
+          font-weight: bold;
+          transition: 0.2s;
+        }
+
+        .chatbot-input button:hover {
+          background: #ccc;
+        }
+
+
+       </style>
+
+
+
        <section class="elementor-section elementor-top-section elementor-element elementor-element-057a1f0 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="057a1f0" id="about">
         <div class="elementor-container elementor-column-gap-no">
          <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b7865e0" data-element_type="column" data-id="b7865e0">
@@ -872,9 +989,9 @@
                 </div>
                </div>
                <div class="feature-more-btn-wrap">
-                <a class="theme-btn" href="featured-projects/index.html">
-                 View More
-                 <img alt="" decoding="async" src="wp-content/uploads/2024/09/btn-arrow-1.svg"/>
+                <a class="theme-btn" href="javascript:void(0)" onclick="openModal()">
+                  View More
+                  <img alt="" decoding="async" src="wp-content/uploads/2024/09/btn-arrow-1.svg"/>
                 </a>
                </div>
               </div>
@@ -885,6 +1002,144 @@
          </div>
         </div>
        </section>
+
+        <div id="infoModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Enter Your Details</h2>
+            <form>
+              <div class="input-group">
+                <input type="text" placeholder="Name" required>
+              </div>
+              <div class="input-group">
+                <input type="text" placeholder="Phone" required>
+              </div>
+              <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            <p class="note">💬 Our team will contact you soon!</p>
+          </div>
+        </div>
+
+        <style>
+          /* Modal Background */
+          .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+          }
+
+          /* Modal Content */
+          .modal-content {
+            background: #111;
+            color: #fff;
+            padding: 40px;
+            border-radius: 18px;
+            width: 500px; /* Increased width */
+            text-align: center;
+            box-shadow: 0 0 35px rgba(255,255,255,0.08);
+            animation: fadeIn 0.3s ease-in-out;
+          }
+
+          /* Close Button */
+          .close {
+            color: #aaa;
+            position: absolute;
+            /* float: right; */
+            top:15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+          }
+          .close:hover {
+            color: #fff;
+          }
+
+          /* Heading */
+          .modal-content h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #eaeaea;
+          }
+
+          /* Input Fields */
+          .input-group {
+            margin-bottom: 18px;
+          }
+          .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+          }
+          .input-group input:focus {
+            border-color: #fff;
+            background: #222;
+            box-shadow: 0 0 10px rgba(255,255,255,0.15);
+          }
+
+
+
+          /* Submit Button */
+          .submit-btn {
+            background-image: linear-gradient(to right, #ECE9E6 0%, #FFFFFF 51%, #ECE9E6 100%);
+            margin: 10px 0;
+            padding: 14px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: #000;   /* Black text for contrast */
+            font-weight: bold;
+            font-size: 15px;
+            /* box-shadow: 0 0 20px #eee; */
+            border-radius: 10px;
+            display: block;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+          }
+
+          .submit-btn:hover {
+            background-position: right center;
+            color: #000; /* Keep black text on hover */
+            text-decoration: none;
+            animation: gradient-pan 1.2s ease-in-out infinite alternate;
+          }
+
+          @keyframes gradient-pan {
+            0%   { background-position:   0% 50%; }
+            100% { background-position: 100% 50%; }
+          }
+
+          /* Note under form */
+          .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+            font-style: italic;
+          }
+
+          /* Animation */
+          @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+          }
+          </style>
        <!-- <section class="elementor-section elementor-top-section elementor-element elementor-element-5cdf68d elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="5cdf68d" id="awards">
         <div class="elementor-container elementor-column-gap-no">
          <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-89b0d88" data-element_type="column" data-id="89b0d88">
@@ -1311,7 +1566,7 @@
       </span>
       <div class="pricing-header">
         <span class="title">Automation Tools</span>
-        <h3 class="price">₹5,000+ <span>/tool</span></h3>
+        <h3 class="price">₹8,000+ <span>/tool</span></h3>
         <p class="content">
           <span class="required">*</span>
           Build powerful tools like certificate generators, mailers, form bots, etc.
@@ -1441,7 +1696,7 @@
                <div class="left">
                 <div class="contact-content">
                  <h3 data-aos="fade-up">
-                  Let’s
+                  Let's
                   <span>
                    Connect
                   </span>
@@ -1461,7 +1716,7 @@
                    <ul>
                    </ul>
                   </div>
-                  <form action="https://wpriverthemes.com/aixor/#wpcf7-f492-p268-o1" aria-label="Contact form" class="wpcf7-form init" data-status="init" method="post" novalidate="novalidate">
+                  <form action="#" aria-label="Contact form" class="wpcf7-form init" data-status="init" method="post" novalidate="novalidate">
                    <div style="display: none;">
                     <input name="_wpcf7" type="hidden" value="492"/>
                     <input name="_wpcf7_version" type="hidden" value="6.0.6"/>
@@ -1731,9 +1986,10 @@
       </footer>
      </main>
     </body>
-   </html>
+   <!-- </html> -->
   </div>
   <!-- #page -->
+  
   <script>
    const lazyloadRunObserver = () => {
 					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
@@ -1760,6 +2016,65 @@
 					document.addEventListener( event, lazyloadRunObserver );
 				} );
   </script>
+
+  <script>
+    // Toggle chatbot visibility
+    document.getElementById("openChatbot").onclick = function() {
+      document.getElementById("chatbotWidget").style.display = "flex";
+    };
+
+    document.getElementById("closeChatbot").onclick = function() {
+      document.getElementById("chatbotWidget").style.display = "none";
+    };
+
+    // Handle message sending
+    document.getElementById("sendMessage").onclick = sendMessage;
+    document.getElementById("userInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      let input = document.getElementById("userInput");
+      let message = input.value.trim();
+      if (message === "") return;
+
+      let chat = document.getElementById("chatMessages");
+
+      let userMsg = document.createElement("div");
+      userMsg.className = "user-message";
+      userMsg.textContent = message;
+      chat.appendChild(userMsg);
+
+      setTimeout(() => {
+        let botMsg = document.createElement("div");
+        botMsg.className = "bot-message";
+        botMsg.textContent = "You said: " + message;
+        chat.appendChild(botMsg);
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+
+  </script>
+
+  <script>
+    function openModal() {
+      document.getElementById("infoModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("infoModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("infoModal")) {
+        closeModal();
+      }
+    }
+  </script>
+
+
   <script id="wp-hooks-js" src="wp-includes/js/dist/hooks.min4fdd.js?ver=4d63a3d491d11ffd8ac6">
   </script>
   <script id="wp-i18n-js" src="wp-includes/js/dist/i18n.minc33c.js?ver=5e580eb46a90c2b997e6">
@@ -1767,18 +2082,11 @@
   <script id="wp-i18n-js-after">
    wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
   </script>
-  <script id="swv-js" src="wp-content/plugins/contact-form-7/includes/swv/js/indexfc7a.js?ver=6.0.6">
-  </script>
-  <script id="contact-form-7-js-before">
-   var wpcf7 = {
-    "api": {
-        "root": "https:\/\/wpriverthemes.com\/aixor\/wp-json\/",
-        "namespace": "contact-form-7\/v1"
-    }
-};
-  </script>
-  <script id="contact-form-7-js" src="wp-content/plugins/contact-form-7/includes/js/indexfc7a.js?ver=6.0.6">
-  </script>
+  <!-- <script id="swv-js" src="wp-content/plugins/contact-form-7/includes/swv/js/indexfc7a.js?ver=6.0.6">
+  </script> -->
+
+  <!-- <script id="contact-form-7-js" src="wp-content/plugins/contact-form-7/includes/js/indexfc7a.js?ver=6.0.6">
+  </script> -->
   <script id="aixor-navigation-js" src="wp-content/themes/aixor/js/navigation8a54.js?ver=1.0.0">
   </script>
   <script id="bootstrap-bundle-min-js" src="wp-content/themes/aixor/assets/js/bootstrap.bundle.mind1c0.js?ver=6.7.2">
@@ -1797,9 +2105,6 @@
   </script>
   <script id="aixor-main-js" src="wp-content/themes/aixor/assets/js/mainc7fd.js?ver=1747050233">
   </script>
-  <script id="custom-script-js-extra">
-   var themeData = {"imgUrl":"https:\/\/wpriverthemes.com\/aixor\/wp-content\/themes\/aixor\/assets\/images\/btn-arrow.svg"};
-  </script>
   <script id="custom-script-js" src="wp-content/themes/aixor/assets/js/custom.html">
   </script>
   <script id="elementor-webpack-runtime-js" src="wp-content/plugins/elementor/assets/js/webpack.runtime.min89ce.js?ver=3.28.4">
@@ -1809,11 +2114,10 @@
   <script id="jquery-ui-core-js" src="wp-includes/js/jquery/ui/core.minb37e.js?ver=1.13.3">
   </script>
   <script id="elementor-frontend-js-before">
-   var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.28.4","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_local_google_fonts":true,"nested-elements":true,"editor_v2":true,"e_element_cache":true,"home_screen":true},"urls":{"assets":"https:\/\/wpriverthemes.com\/aixor\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/wpriverthemes.com\/aixor\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/wpriverthemes.com\/aixor\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"37ed7f10bd"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":268,"title":"AIXOR%20Creative%20Agency%20WordPress%20Theme","excerpt":"","featuredImage":false}};
+   var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.28.4","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_local_google_fonts":true,"nested-elements":true,"editor_v2":true,"e_element_cache":true,"home_screen":true},"urls":{"assets":"https:\/\/wpriverthemes.com\/aixor\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/wpriverthemes.com\/aixor\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/wpriverthemes.com\/aixor\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"37ed7f10bd"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"}};
   </script>
   <script id="elementor-frontend-js" src="wp-content/plugins/elementor/assets/js/frontend.min89ce.js?ver=3.28.4">
   </script>
  </body>
- <!-- Mirrored from wpriverthemes.com/aixor/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 May 2025 11:44:46 GMT -->
 </html>
 
