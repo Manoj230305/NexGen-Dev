@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+section {
+  position: relative;
+  min-height: 100vh;
+  padding: 5rem 1rem;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(0,255,255,0.1), transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(128,0,128,0.1), transparent 50%),
+    radial-gradient(circle, rgba(0,0,255,0.05), transparent 70%);
+  z-index: 0;
+}
+
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,255,255,0.3);
+  background: rgba(0,255,255,0.05);
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.header .badge .dot {
+  width: 8px;
+  height: 8px;
+  background: cyan;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  background: linear-gradient(to right, white, cyan, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 1rem 0;
+}
+
+.header p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #bbb;
+  font-size: 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  gap: 2rem;
+  margin: 3rem auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.project-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.5s ease;
+  background: rgba(0,0,0,0.8);
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,255,0.25);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.project-card .image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-card .info {
+  padding: 1rem;
+  text-align: left;
+}
+
+.project-card .info h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.project-card .info p {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.project-details {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.view-more {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(to right, cyan, purple);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.view-more:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,255,0.25);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<section>
+  <div class="grid-pattern"></div>
+  <div class="container">
+
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="image">
+          <img src="wp-content/uploads/2024/07/C2.png" alt="Mayilon Tours & Travels">
+        </div>
+        <div class="info">
+          <h3>Mayilon Tours & Travels</h3>
+          <p>We crafted a travel booking platform for seamless adventures.</p>
+          <div class="project-details">
+            Industry: Travel & Tourism<br>
+            Release Date: March 23rd, 2025
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="image">
+          <img src="wp-content/uploads/2024/07/C3.png" alt="Green O' Chat">
+        </div>
+        <div class="info">
+          <h3>Green O' Chat</h3>
+          <p>A social app rewarding users for eco-friendly actions like tree planting or cleanups.</p>
+          <div class="project-details">
+            Industry: Sustainability & Social Impact<br>
+            Release Date: July 22nd, 2024
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="image">
+          <img src="wp-content/uploads/2024/07/C1.png" alt="CertiSwift">
+        </div>
+        <div class="info">
+          <h3>CertiSwift</h3>
+          <p>Enables seamless generation of certificates and ID cards with real-time previews and automation.</p>
+          <div class="project-details">
+            Industry: Productivity & Automation<br>
+            Release Date: April 5th, 2025
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="view-more">View More Projects →</a>
+  </div>
+</section>
+
+</body>
+</html>
